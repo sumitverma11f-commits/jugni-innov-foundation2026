@@ -1,0 +1,10 @@
+# Dependencies — never commit these, they are reinstalled with npm install
+node_modules/
+
+# Environment variables — contains passwords and secret keys, NEVER commit
+.env
+
+# OS and editor junk files
+.DS_Store
+Thumbs.db
+.vscode/
