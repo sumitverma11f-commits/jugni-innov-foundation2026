@@ -1,5 +1,20 @@
 const express = require('express');
 const cors = require('cors');
+
+const app = express();
+
+app.use(cors({
+  origin: [
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+    'https://jugninnovfoundation.netlify.app/',
+    'https://jugninnovadmin.netlify.app/'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+app.use(express.json());
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
@@ -13,8 +28,15 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 dotenv.config();
 connectDB();
 
-const app = express();
-const allowedOrigins = [process.env.FRONTEND_URL, 'http://127.0.0.1:5500', 'http://localhost:5500'].filter(Boolean);
+app.use(cors({
+  origin: [
+    'http://localhost:5500',
+    'https://jugninnovfoundation.netlify.app/',
+    ''
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 app.use(helmet());
 app.use(cors());
